@@ -6,6 +6,17 @@ class configfiles (
 
 )inherits puppetmaster::params {
 
+  Ini_setting{
+    notify => Service['pe-httpd','pe-puppetserver'],
+  }
+
   # INI File Line for puppet.conf
+  ini_setting { "autosign":
+      ensure  => present,
+      path    => '/etc/puppetlabs/puppet/puppet.conf',
+      section => 'master',
+      setting => 'autosign',
+      value   => 'true',
+  }
 
 }
