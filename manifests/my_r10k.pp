@@ -5,4 +5,8 @@ class my_r10k(
       remote   => $r10k_source,
       provider => 'pe_gem',
   }
+
+  exec { '/usr/bin/r10k deploy environment --puppetfile':
+    require => Class['r10k'],
+  }
 }
