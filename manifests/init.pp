@@ -5,7 +5,7 @@ class puppetmaster (
 )inherits puppetmaster::params{
 
   stage {'webhook':
-    before => Stage['main'],
+    require => Stage['main'],
   }
   
   class { puppetmaster::webhook:
