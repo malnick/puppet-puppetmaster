@@ -4,8 +4,16 @@ class puppetmaster (
   
 )inherits puppetmaster::params{
 
+  stage {'webhook':
+    before => Stage['main'],
+  }
+  
+  class { puppetmaster::webhook:
+    stage => 'webhook',
+  }
+
+  # Main Stage
   include puppetmaster::service
-  include puppetmaster::webhook
 
   class {puppetmaster::configfiles:
     autosign_bool => $autosign_bool,
