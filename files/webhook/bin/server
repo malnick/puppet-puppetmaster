@@ -1,0 +1,31 @@
+#!/bin/bash
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+case "$1" in 
+	start)
+		echo "Starting sinatra server..."
+		$DIR/./run.server 
+		;;	
+	stop)
+		echo "Killing sinatra process..."
+		kill -9 $(lsof -i :6969 | awk 'NR==2 {print $2}')
+		echo "Done."
+		;;
+	reload|restart)
+		$0 stop
+		$0 start
+		;;
+    status)
+        if [[ `lsof -i :6969 | awk 'NR==2 {print $2}'` ]] 
+        then 
+            echo "Webhook is running"
+            exit 0
+        else
+            echo "Webhook is not running"
+            exit 1
+        fi
+        ;;
+	*)
+		echo "Usage: start|stop|reload|restart|status"
+		exit 1
+esac
+exit 0
