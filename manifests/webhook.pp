@@ -33,21 +33,23 @@ class puppetmaster::webhook {
     ensure    => directory,
     recurse   => true,
     source    => 'puppet:///modules/puppetmaster/webhook',
-    notify    => Service['r10k_webhook'],
   }
 
   file {'/etc/puppetlabs/puppet/webhook/logs':
     ensure  => directory,
+    notify    => Service['r10k_webhook'],
   }
 
   service {'r10k_webhook':
-    ensure    => running,
-    path      => '/etc/puppetlabs/puppet/webhook/bin/server',
-    status    => '/etc/puppetlabs/puppet/webhook/bin/server status',
-    start     => '/etc/puppetlabs/puppet/webhook/bin/server start',
-    stop      => '/etc/puppetlabs/puppet/webhook/bin/server stop', 
-    restart   => '/etc/puppetlabs/puppet/webhook/bin/server restart',
-    require   => [Package['webrick_gem','sinatra_gem','ruby1.9.3'], Exec['git_gem'], File['/etc/puppetlabs/puppet/webhook']],
+    ensure      => running,
+    hasstatus   => true,
+    hasrestart  => true,
+    path        => '/etc/puppetlabs/puppet/webhook/bin/server',
+    status      => '/etc/puppetlabs/puppet/webhook/bin/server status',
+    start       => '/etc/puppetlabs/puppet/webhook/bin/server start',
+    stop        => '/etc/puppetlabs/puppet/webhook/bin/server stop', 
+    restart     => '/etc/puppetlabs/puppet/webhook/bin/server restart',
+    require     => [Package['webrick_gem','sinatra_gem','ruby1.9.3'], Exec['git_gem'], File['/etc/puppetlabs/puppet/webhook']],
   }
 
 
