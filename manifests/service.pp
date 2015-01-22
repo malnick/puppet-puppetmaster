@@ -1,11 +1,13 @@
 class puppetmaster::service {
 
   service {'pe-httpd':
-    ensure => running,
+    ensure  => running,
+    enable  => true,
   }
 
   service {'pe-puppetserver':
-    ensure => running,
+    ensure  => running,
+    enable  => true,
   }
 
 }
