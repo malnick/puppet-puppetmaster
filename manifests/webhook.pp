@@ -8,18 +8,21 @@ class puppetmaster::webhook {
     ensure    => present,
     name      => 'sinatra',
     provider  => 'gem',
+    require   => Package['ruby1.9.3'],
   }
   
   package {'git_gem':
     ensure    => present,
-    name      => 'git',
+    name      => 'git 1.2.8',
     provider  => 'gem',
+    require   => Package['ruby1.9.3'],
   }
 
   package {'webrick_gem':
     ensure    => present,
     name      => 'webrick',
     provider  => 'gem',
+    require   => Package['ruby1.9.3'],
   }
 
   file {'/etc/puppetlabs/puppet/webhook':
