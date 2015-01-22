@@ -12,8 +12,8 @@ class puppetmaster::webhook {
   }
   
   package {'git_gem':
-    ensure    => present,
-    name      => 'git-1.2.9.1.gem',
+    ensure    => '1.2.9',
+    name      => 'git',
     provider  => 'gem',
     require   => Package['ruby1.9.3'],
   }
