@@ -42,7 +42,7 @@ class puppetmaster::webhook {
     start     => '/etc/puppetlabs/puppet/webhook/bin/server start',
     stop      => '/etc/puppetlabs/puppet/webhook/bin/server stop', 
     restart   => '/etc/puppetlabs/puppet/webhook/bin/server restart',
-    require   => [Package['webrick_gem','sinatra_gem','ruby1.9.3','git_gem'], File['/etc/puppetlabs/puppet/webhook']],
+    require   => [Package['webrick_gem','sinatra_gem','ruby1.9.3'], Exec['git_gem'], File['/etc/puppetlabs/puppet/webhook']],
   }
 
 
