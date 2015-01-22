@@ -13,7 +13,7 @@ class puppetmaster::webhook {
   package {'git_gem':
     ensure    => present,
     name      => 'git',
-    provider  => gem,
+    provider  => 'gem',
   }
 
   package {'webrick_gem':
