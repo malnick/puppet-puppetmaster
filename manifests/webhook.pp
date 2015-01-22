@@ -36,8 +36,14 @@ class puppetmaster::webhook {
     notify    => Service['r10k_webhook'],
   }
 
+  file {'/etc/puppetlabs/puppet/webhook/logs':
+    ensure  => directory,
+  }
+
   service {'r10k_webhook':
-    ensure => running,
+    ensure    => running,
+    enable    => true,
+    path      => '/etc/puppetlabs/puppet/webhook/bin/server',
     status    => '/etc/puppetlabs/puppet/webhook/bin/server status',
     start     => '/etc/puppetlabs/puppet/webhook/bin/server start',
     stop      => '/etc/puppetlabs/puppet/webhook/bin/server stop', 
