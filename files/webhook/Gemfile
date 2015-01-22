@@ -1,0 +1,8 @@
+# r10k webhook gems
+# Install by running 'bundle'
+
+source 'https://rubygems.org'
+gem 'json'
+gem 'sinatra'
+gem 'git'
+gem 'webrick'
