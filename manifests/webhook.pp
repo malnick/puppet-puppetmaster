@@ -11,7 +11,7 @@ class puppetmaster::webhook {
     require   => Package['ruby1.9.3'],
   }
   
-  exec {'gem install git':
+  exec {'/usr/bin/gem install git':
     require => Package['ruby1.9.3'],
   }
   #  package {'git_gem':
