@@ -41,6 +41,7 @@ class puppetmaster::webhook {
   }
 
   service {'r10k_webhook':
+    provider    => base,
     ensure      => running,
     hasstatus   => true,
     hasrestart  => true,
