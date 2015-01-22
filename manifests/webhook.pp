@@ -42,7 +42,6 @@ class puppetmaster::webhook {
 
   service {'r10k_webhook':
     ensure    => running,
-    enable    => true,
     path      => '/etc/puppetlabs/puppet/webhook/bin/server',
     status    => '/etc/puppetlabs/puppet/webhook/bin/server status',
     start     => '/etc/puppetlabs/puppet/webhook/bin/server start',
